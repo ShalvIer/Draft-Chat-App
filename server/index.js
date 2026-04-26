@@ -63,10 +63,10 @@ io.on('connection', socket => {
         socket.broadcast.to(user.room).emit('message', messageBuilder(ADMIN, `${user.nickname} has joined the room!`))
 
         //To those who joined
-        socket.emit('message', messageBuilder(ADMIN, `You've joined the ${user.pr_room} chatroom!`))
+        socket.emit('message', messageBuilder(ADMIN, `You've joined the ${user.room} chatroom!`))
 
         //To others
-        socket.broadcast.to(user.pr_room).emit('message', messageBuilder(ADMIN, `${user.nickname} has joined the room!`))
+        socket.broadcast.to(user.room).emit('message', messageBuilder(ADMIN, `${user.nickname} has joined the room!`))
 
         //Update the userlist
 
