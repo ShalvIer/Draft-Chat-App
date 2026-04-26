@@ -1,0 +1,196 @@
+/* --- Variables & Reset --- */
+:root {
+  --bg-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --accent-color: #00d2ff;
+  --accent-secondary: #3a7bd5;
+  --text-main: #ffffff;
+  --text-dim: #b0b0b0;
+  --user-msg: #3a7bd5;
+  --reply-msg: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-main);
+}
+
+/* --- Main Container --- */
+main {
+  width: 95%;
+  max-width: 900px;
+  height: 90vh;
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- Join Form Section --- */
+.form-join {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+input[type="text"] {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: white;
+  outline: none;
+  transition: 0.3s;
+}
+
+input[type="text"]:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-weight: 600;
+  transition: 0.3s;
+  background: linear-gradient(45deg, var(--accent-color), var(--accent-secondary));
+  color: white;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 210, 255, 0.4);
+}
+
+/* --- Chat Display Area --- */
+.chat-dis {
+  flex: 1;
+  list-style: none;
+  overflow-y: auto;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Message Bubbles */
+.post {
+  max-width: 70%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Left Align (User's own messages) */
+.post--left {
+  align-self: flex-end;
+  background: var(--user-msg);
+  border-bottom-right-radius: 4px;
+  color: white;
+}
+
+/* Right Align (Others) */
+.post--right {
+  align-self: flex-start;
+  background: var(--reply-msg);
+  border-bottom-left-radius: 4px;
+  border: 1px solid var(--glass-border);
+}
+
+.post__header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  margin-bottom: 5px;
+  font-weight: bold;
+  opacity: 0.8;
+}
+
+.post__header--time {
+  margin-left: 10px;
+  font-weight: normal;
+}
+
+/* Admin/System messages */
+.post:not(.post--left):not(.post--right) {
+  align-self: center;
+  background: transparent;
+  font-style: italic;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+}
+
+/* --- Info Text (Users, Rooms, Typing) --- */
+.user-list, .room-list {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-bottom: 5px;
+}
+
+.current_action {
+  height: 20px;
+  font-size: 0.85rem;
+  color: var(--accent-color);
+  margin-bottom: 5px;
+  font-style: italic;
+}
+
+/* --- Message Form --- */
+.form-message {
+  display: flex;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 16px;
+}
+
+.form-message input {
+  flex: 1;
+}
+
+/* --- Scrollbar Styling --- */
+.chat-dis::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-dis::-webkit-scrollbar-thumb {
+  background: var(--glass-border);
+  border-radius: 10px;
+}
+
+.chat-dis::-webkit-scrollbar-track {
+  background: transparent;
+}
