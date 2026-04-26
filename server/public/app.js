@@ -1,4 +1,4 @@
-const socket = io('ws://localhost:3500')
+const socket = io('https://draft-chat-app.onrender.com')
 
 const messageInput = document.querySelector("#message")
 const nnameInput = document.querySelector("#nickname")
